@@ -21,14 +21,18 @@ mat3 Transform::rotate(const float degrees, const vec3& axis) {
 // Transforms the camera left around the "crystal ball" interface
 void Transform::left(float degrees, vec3& eye, vec3& up) {
   // YOUR CODE FOR HW1 HERE
-	vec3 y = vec3(0, 1, 0);
+	//vec3 y = vec3(0, 1, 0);
+	vec3 y = up;
 	eye = rotate(degrees, y)*eye;
-	up = rotate(degrees, y)*up;
+	//up = rotate(degrees, y)*up;
 }
 
 // Transforms the camera up around the "crystal ball" interface
 void Transform::up(float degrees, vec3& eye, vec3& up) {
-  // YOUR CODE FOR HW1 HERE 
+  // YOUR CODE FOR HW1 HERE
+	vec3 x = glm::normalize(glm::cross(eye, up));
+	eye = rotate(degrees, x)*eye;
+	up = rotate(degrees, x)*up;
 }
 
 // Your implementation of the glm::lookAt matrix
